@@ -1,0 +1,15 @@
+[functions]
+  external_node_modules = ["express", "ejs"]
+  node_bundler = "esbuild"
+  included_files = ["views/**", "public/**"]
+
+[build]
+  base    = ""
+  publish = "build"
+  command = "npm run build"
+
+[[redirects]]
+  force = true
+  from = "/*"
+  status = 200
+  to = "/.netlify/functions/api/:splat"
