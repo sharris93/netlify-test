@@ -10,6 +10,9 @@ const profilesRouter = require('./controllers/profiles');
 const hootsRouter = require('./controllers/hoots.js')
 
 const path = require('path');
+const url = require('url');
+
+const importMetaUrl = url.pathToFileURL(__filename).href
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -26,10 +29,10 @@ app.use('/profiles', profilesRouter);
 app.use('/hoots', hootsRouter);
 
 // ** New lines **
-app.use(express.static(path.join(__dirname, 'client', 'dist')))
+app.use(express.static(path.join(importMetaUrl, 'client', 'dist')))
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
+  res.sendFile(path.join(importMetaUrl, 'client', 'dist', 'index.html'))
 })
 
 app.listen(3000, () => {
