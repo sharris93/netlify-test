@@ -9,12 +9,7 @@ const usersRouter = require('./controllers/users');
 const profilesRouter = require('./controllers/profiles');
 const hootsRouter = require('./controllers/hoots.js')
 
-const path = require('path')
-const { fileURLToPath } = require('url')
-const { dirname } = require('path')
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const path = require('path');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -31,10 +26,10 @@ app.use('/profiles', profilesRouter);
 app.use('/hoots', hootsRouter);
 
 // ** New lines **
-app.use(express.static('client/dist'))
+app.use(express.static(path.join(__dirname, 'client', 'dist')))
 
 app.get('*', (req, res) => {
-  res.sendFile('client/dist/index.html')
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
 })
 
 app.listen(3000, () => {
