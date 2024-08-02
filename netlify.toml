@@ -1,7 +1,7 @@
 [functions]
-  external_node_modules = ["express", "ejs"]
+  external_node_modules = ["express"]
   node_bundler = "esbuild"
-  included_files = ["views/**", "public/**"]
+  included_files = ["client/dist/**"]
 
 [[redirects]]
   force = true
