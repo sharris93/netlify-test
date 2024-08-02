@@ -9,8 +9,6 @@ const usersRouter = require('./controllers/users');
 const profilesRouter = require('./controllers/profiles');
 const hootsRouter = require('./controllers/hoots.js')
 
-const path = require('path');
-
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('connected', () => {
@@ -24,13 +22,6 @@ app.use('/test-jwt', testJWTRouter);
 app.use('/users', usersRouter);
 app.use('/profiles', profilesRouter);
 app.use('/hoots', hootsRouter);
-
-// ** New lines **
-app.use(express.static(path.join(__dirname, 'client', 'dist')))
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
-})
 
 app.listen(3000, () => {
   console.log('The express app is ready!');

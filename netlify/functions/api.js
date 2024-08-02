@@ -10,10 +10,6 @@ const profilesRouter = require('../../controllers/profiles');
 const hootsRouter = require('../../controllers/hoots.js')
 
 const path = require('path')
-const url = require('url')
-
-const __filename = url.fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
 
 mongoose.connect(process.env.MONGODB_URI);
 
